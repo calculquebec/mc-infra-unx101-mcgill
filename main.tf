@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 0.14.2"
+  required_version = ">= 1.1.0"
 }
 
 variable "password" {}
@@ -15,16 +15,16 @@ module "openstack" {
   image        = "Rocky-8.6-x64-2022-07"
 
   instances = {
-    mgmt   = { type = "p4-6gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
-    login  = { type = "p2-3gb", tags = ["login", "public", "proxy"], count = 1 }
-    node   = { type = "p8-30gb", tags = ["node"], count = 2 }
+    mgmt   = { type = "p4-7.5gb", tags = ["puppet", "mgmt", "nfs"], count = 1 }
+    login  = { type = "p4-7.5gb", tags = ["login", "public", "proxy"], count = 1 }
+    node   = { type = "c8-60gb", tags = ["node"], count = 2 }
   }
 
   volumes = {
     nfs = {
-      home     = { size = 100 }
-      project  = { size = 50 }
-      scratch  = { size = 50 }
+      home     = { size = 20 }
+      project  = { size = 20 }
+      scratch  = { size = 20 }
     }
   }
 
